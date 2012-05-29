@@ -1,0 +1,107 @@
+<!doctype html>
+<!--[if IE 7]>     <html class="ie7"> <![endif]-->
+<!--[if gt IE 7]>  <html>             <![endif]-->
+<!--[if !IE]><!--> <html>             <!--<![endif]-->
+    <head>
+        <title>jquery.squeezebox</title>
+        <style>
+            h3,
+            p
+            {
+                margin: 0;
+                padding: 0.5em;
+            }
+            .squeezebox
+            {
+                background-color: #ccc;
+            }
+            .squeezebox-box
+            {
+                background-color: #ccc;
+            }
+            .squeezebox-box.active
+            {
+                background-color: #ffc;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>
+            jquery.squeezebox
+        </h1>
+        <h2>
+            Click these ones...
+        </h2>
+        <div id="squeezebox">
+            <div>
+                <h3>
+                    Tab 1
+                </h3>
+                <p>
+                    Lorizzle ipsum shizznit sit amet, consectetuer adipiscing crazy. Nullizzle fo velizzle, crazy away, suscipizzle rizzle, away vizzle, ass. Pellentesque eget tortizzle. Sed erizzle. Sheezy izzle we gonna chung dapibizzle turpis tempizzle bow wow wow. Maurizzle pellentesque nibh gangster turpis.
+                </p>
+            </div>
+            <div>
+                <h3>
+                    Tab 2
+                </h3>
+                <p>
+                    Lorizzle ipsum shizznit sit amet, consectetuer adipiscing crazy. Nullizzle fo velizzle, crazy away, suscipizzle rizzle, away vizzle, ass. Pellentesque eget tortizzle. Sed erizzle. Sheezy izzle we gonna chung dapibizzle turpis tempizzle bow wow wow. Maurizzle pellentesque nibh gangster turpis.
+                </p>
+                <p>
+                    Lorizzle ipsum shizznit sit amet, consectetuer adipiscing crazy. Nullizzle fo velizzle, crazy away, suscipizzle rizzle, away vizzle, ass. Pellentesque eget tortizzle. Sed erizzle. Sheezy izzle we gonna chung dapibizzle turpis tempizzle bow wow wow. Maurizzle pellentesque nibh gangster turpis.
+                </p>
+            </div>
+            <div>
+                <h3>
+                    Tab 3
+                </h3>
+                <p>
+                    Lorizzle ipsum shizznit sit amet, consectetuer adipiscing crazy. Nullizzle fo velizzle, crazy away, suscipizzle rizzle, away vizzle, ass. Pellentesque eget tortizzle. Sed erizzle. Sheezy izzle we gonna chung dapibizzle turpis tempizzle bow wow wow. Maurizzle pellentesque nibh gangster turpis.
+                </p>
+            </div>
+        </div>
+        <h2>
+            Mouseover these ones...
+        </h2>
+        <div id="billowbox">
+            <div>
+                <h3>
+                    Tab 1
+                </h3>
+                <p>
+                    Lorizzle ipsum shizznit sit amet, consectetuer adipiscing crazy. Nullizzle fo velizzle, crazy away, suscipizzle rizzle, away vizzle, ass. Pellentesque eget tortizzle. Sed erizzle. Sheezy izzle we gonna chung dapibizzle turpis tempizzle bow wow wow. Maurizzle pellentesque nibh gangster turpis.
+                </p>
+            </div>
+            <div>
+                <h3>
+                    Tab 2
+                </h3>
+                <p>
+                    Lorizzle ipsum shizznit sit amet, consectetuer adipiscing crazy. Nullizzle fo velizzle, crazy away, suscipizzle rizzle, away vizzle, ass. Pellentesque eget tortizzle. Sed erizzle. Sheezy izzle we gonna chung dapibizzle turpis tempizzle bow wow wow. Maurizzle pellentesque nibh gangster turpis.
+                </p>
+                <p>
+                    Lorizzle ipsum shizznit sit amet, consectetuer adipiscing crazy. Nullizzle fo velizzle, crazy away, suscipizzle rizzle, away vizzle, ass. Pellentesque eget tortizzle. Sed erizzle. Sheezy izzle we gonna chung dapibizzle turpis tempizzle bow wow wow. Maurizzle pellentesque nibh gangster turpis.
+                </p>
+            </div>
+            <div>
+                <h3>
+                    Tab 3
+                </h3>
+                <p>
+                    Lorizzle ipsum shizznit sit amet, consectetuer adipiscing crazy. Nullizzle fo velizzle, crazy away, suscipizzle rizzle, away vizzle, ass. Pellentesque eget tortizzle. Sed erizzle. Sheezy izzle we gonna chung dapibizzle turpis tempizzle bow wow wow. Maurizzle pellentesque nibh gangster turpis.
+                </p>
+            </div>
+        </div>
+        <script src="js/jquery-1.7.2.min.js"></script>
+        <script src="js/jquery.squeezebox.js"></script>
+        <script>
+            $(function() {
+                $("#squeezebox").squeezebox();
+                $("#billowbox").squeezebox({
+                    event: "mouseover"
+                });
+            });
+        </script>
+    </body>
+</html>
