@@ -46,37 +46,20 @@
                     "bottom": 0
                 });
                 
-                if (settings.event === "click") {
-                    $boxes.click(function() {
-                        $boxes.clearQueue();
-                        
-                        var $activeBox = $(this).siblings(".active"),
-                            $box = $(this);
-                        
-                        $activeBox.animate({
-                            "height": (headerHeight / fontSize) + "em"
-                        }).removeClass("active").children(":not(:first-child)");
-                        
-                        $box.animate({
-                            "height": (maxHeight / fontSize) + "em"
-                        }).addClass("active").children(":not(:first-child)");
-                    });
-                } else if (settings.event === "mouseover") {
-                    $boxes.mouseenter(function() {
-                        $boxes.clearQueue();
-                        
-                        var $activeBox = $(this).siblings(".active"),
-                            $box = $(this);
-                        
-                        $activeBox.animate({
-                            "height": (headerHeight / fontSize) + "em"
-                        }).removeClass("active").children(":not(:first-child)");
-                        
-                        $box.animate({
-                            "height": (maxHeight / fontSize) + "em"
-                        }).addClass("active").children(":not(:first-child)");
-                    });
-                }
+                $boxes[settings.event](function() {
+                    $boxes.clearQueue();
+                    
+                    var $activeBox = $(this).siblings(".active"),
+                        $box = $(this);
+                    
+                    $activeBox.animate({
+                        "height": (headerHeight / fontSize) + "em"
+                    }).removeClass("active").children(":not(:first-child)");
+                    
+                    $box.animate({
+                        "height": (maxHeight / fontSize) + "em"
+                    }).addClass("active").children(":not(:first-child)");
+                });
             });
         }
     };
