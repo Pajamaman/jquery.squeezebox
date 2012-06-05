@@ -47,3 +47,14 @@ The event that causes the active panel to change. Possible values are "click" or
 Example:
 
     $("#squeezebox").squeezebox({ event: "mouseover" });
+
+#### selected - Integer - Default: 0
+Zero-based index of the panel that should be active by default.
+
+Example:
+
+    $("#squeezebox").squeezebox({ selected: 2 });
+
+### Bugs
+
+I recommend sticking with the "click" event for now. The "mouseover" event is quite fidgety.

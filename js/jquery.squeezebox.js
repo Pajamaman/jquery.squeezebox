@@ -2,75 +2,68 @@
 // by David Kennedy
 // http://daveden.wordpress.com/
 
-(function($) {
+(function ($) {
+    "use strict";
+
     var methods = {
-        init: function(options) {
+        init: function (options) {
             var settings = $.extend({
-                event: "click"
+                event: "click",
+                selected: 0
             }, options);
-            
-            return this.each(function() {
+
+            return this.each(function () {
                 var $squeezebox = $(this).addClass("squeezebox"),
-                    $boxes =  $squeezebox.children("div").addClass("squeezebox-box"),
-                    $headers = $boxes.children(":first-child"),
+                    $boxes = $squeezebox.children("div").addClass("squeezebox-box"),
                     maxHeight = 0,
-                    totalHeight = 0,
-                    headerHeight = $headers.first().outerHeight(),
-                    fontSize = $(this).css("font-size").replace("px", "");
-                
-                $boxes.each(function() {
-                    if ($(this).outerHeight() > maxHeight) {
-                        maxHeight = $(this).outerHeight();
+                    minHeight = 0,
+                    squeezeboxHeight = 0;
+
+                $boxes.each(function () {
+                    if ($(this).height() > maxHeight) {
+                        maxHeight = $(this).height();
+                        minHeight = $(this).children(":first-child").outerHeight(true);
                     }
-                });
-                
-                for (var i = 1; i < $headers.length; i++) {
-                    totalHeight += headerHeight;
-                }
-                totalHeight += maxHeight;
-                
-                $squeezebox.css({
-                    "height": (totalHeight / fontSize) + "em",
-                    "overflow": "hidden",
-                    "position": "relative"
-                });
-                
-                $boxes.css("overflow", "hidden");
-                
-                $boxes.first().css("height", (maxHeight / fontSize) + "em").addClass("active");
-                
-                $boxes.not(":first-child").css("height", (headerHeight / fontSize) + "em");
-                
-                $boxes.last().css({
-                    "position": "absolute",
-                    "bottom": 0
-                });
-                
-                $boxes[settings.event](function() {
+
+                    squeezeboxHeight += minHeight
+                        + parseInt($(this).css("padding-top").replace("px", ""), 10)
+                        + parseInt($(this).css("padding-bottom").replace("px", ""), 10);
+
+                    $(this).css("overflow", "hidden")
+                        .height(minHeight)
+                        .children(":not(:first-child)").hide();
+                }).eq(settings.selected).addClass("active")
+                    .height(maxHeight)
+                    .children(":not(:first-child)").show();
+
+                $squeezebox.height(squeezeboxHeight + maxHeight - minHeight);
+
+                $boxes[settings.event](function () {
                     $boxes.clearQueue();
-                    
-                    var $activeBox = $(this).siblings(".active"),
-                        $box = $(this);
-                    
-                    $activeBox.animate({
-                        "height": (headerHeight / fontSize) + "em"
-                    }).removeClass("active").children(":not(:first-child)");
-                    
-                    $box.animate({
-                        "height": (maxHeight / fontSize) + "em"
-                    }).addClass("active").children(":not(:first-child)");
+
+                    $(this).siblings(".active").removeClass("active")
+                        .animate({
+                            "height": minHeight
+                        }).promise().done(function () {
+                            $(this).children(":not(:first-child)").hide();
+                        });
+
+                    $(this).addClass("active")
+                        .animate({
+                            "height": maxHeight
+                        }).children(":not(:first-child)").show();
                 });
             });
         }
     };
-    
-    $.fn.squeezebox = function(method) {
+
+    $.fn.squeezebox = function (method) {
         if (methods[method]) {
             return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
-        } else if (typeof method == "object" || !method) {
+        } else if (typeof method === "object" || !method) {
             return methods.init.apply(this, arguments);
         } else {
             $.error("Method " + method + " does not exist on jquery.squeezebox");
         }
     };
-})(jQuery);
+}(jQuery));

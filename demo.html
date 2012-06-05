@@ -5,11 +5,9 @@
     <head>
         <title>jquery.squeezebox</title>
         <style>
-            h3,
-            p
+            h3
             {
                 margin: 0;
-                padding: 0.5em;
             }
             .squeezebox
             {
@@ -18,6 +16,7 @@
             .squeezebox-box
             {
                 background-color: #ccc;
+                padding: 0.5em;
             }
             .squeezebox-box.active
             {
@@ -99,7 +98,8 @@
             $(function() {
                 $("#squeezebox").squeezebox();
                 $("#billowbox").squeezebox({
-                    event: "mouseover"
+                    event: "mouseover",
+                    selected: 2
                 });
             });
         </script>
