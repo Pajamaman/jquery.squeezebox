@@ -17,7 +17,8 @@
                     $boxes = $squeezebox.children("div").addClass("squeezebox-box"),
                     maxHeight = 0,
                     minHeight = 0,
-                    squeezeboxHeight = 0;
+                    squeezeboxHeight = 0,
+                    fontSize = $(this).css("font-size").replace("px", "");
 
                 $boxes.each(function () {
                     if ($(this).height() > maxHeight) {
@@ -30,27 +31,27 @@
                         + parseInt($(this).css("padding-bottom").replace("px", ""), 10);
 
                     $(this).css("overflow", "hidden")
-                        .height(minHeight)
+                        .css("height", minHeight / fontSize + "em")
                         .children(":not(:first-child)").hide();
                 }).eq(settings.selected).addClass("active")
-                    .height(maxHeight)
+                    .css("height", maxHeight / fontSize + "em")
                     .children(":not(:first-child)").show();
 
-                $squeezebox.height(squeezeboxHeight + maxHeight - minHeight);
+                $squeezebox.css("height", (squeezeboxHeight + maxHeight - minHeight) / fontSize + "em");
 
                 $boxes[settings.event](function () {
                     $boxes.clearQueue();
 
                     $(this).siblings(".active").removeClass("active")
                         .animate({
-                            "height": minHeight
+                            "height": minHeight / fontSize + "em"
                         }).promise().done(function () {
                             $(this).children(":not(:first-child)").hide();
                         });
 
                     $(this).addClass("active")
                         .animate({
-                            "height": maxHeight
+                            "height": maxHeight / fontSize + "em"
                         }).children(":not(:first-child)").show();
                 });
             });
