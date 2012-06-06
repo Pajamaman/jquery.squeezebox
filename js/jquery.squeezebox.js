@@ -8,9 +8,9 @@
     var methods = {
         init: function (options) {
             var settings = $.extend({
-                event: "click",
-                selected: 0
-            }, options);
+                    event: "click",
+                    selected: 0
+                }, options);
 
             return this.each(function () {
                 var $squeezebox = $(this).addClass("squeezebox"),
@@ -26,9 +26,9 @@
                         minHeight = $(this).children(":first-child").outerHeight(true);
                     }
 
-                    squeezeboxHeight += minHeight
-                        + parseInt($(this).css("padding-top").replace("px", ""), 10)
-                        + parseInt($(this).css("padding-bottom").replace("px", ""), 10);
+                    squeezeboxHeight += minHeight +
+                        parseInt($(this).css("padding-top").replace("px", ""), 10) +
+                        parseInt($(this).css("padding-bottom").replace("px", ""), 10);
 
                     $(this).css("overflow", "hidden")
                         .css("height", minHeight / fontSize + "em")
