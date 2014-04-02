@@ -1,7 +1,3 @@
-// jquery.squeezebox
-// by David Kennedy
-// http://daveden.wordpress.com/
-
 (function ($) {
     "use strict";
 
